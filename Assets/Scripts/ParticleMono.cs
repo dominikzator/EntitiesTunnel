@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -17,10 +15,19 @@ public class ParticleBaker : Baker<ParticleMono>
         {
             Value = GetEntity(authoring.Renderer, TransformUsageFlags.Dynamic)
         });
+        AddComponent(particleEntity, new ParticleTag
+        {
+            Speed = 10f
+        });
     }
 }
 
 public struct ParticleRenderer : IComponentData
 {
     public Entity Value;
+}
+
+public struct ParticleTag : IComponentData
+{
+    public float Speed;
 }
