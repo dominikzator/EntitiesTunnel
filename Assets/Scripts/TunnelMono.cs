@@ -1,10 +1,14 @@
 using Unity.Entities;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 public class TunnelMono : MonoBehaviour
 {
-    public int ParticlesToSpawn;
     public GameObject ParticlePrefab;
+    [HideInInspector] public float ParticleSpawnTimer;
+    public float ParticleSpawnRate;
+    [HideInInspector] public uint RandomSeed;
+    public float Radius;
 }
 
 public class TunnelBaker : Baker<TunnelMono>
@@ -16,7 +20,10 @@ public class TunnelBaker : Baker<TunnelMono>
         AddComponent(tunnelEntity, new TunnelProperties
         {
             ParticlePrefab = GetEntity(authoring.ParticlePrefab, TransformUsageFlags.Dynamic),
-            ParticlesToSpawn = authoring.ParticlesToSpawn
+            ParticleSpawnTimer = authoring.ParticleSpawnTimer,
+            ParticleSpawnRate = authoring.ParticleSpawnRate,
+            RandomValue = Random.CreateFromIndex(authoring.RandomSeed),
+            Radius = authoring.Radius
         });
     }
 }

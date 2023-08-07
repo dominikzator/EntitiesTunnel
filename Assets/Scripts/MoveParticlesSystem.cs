@@ -14,12 +14,10 @@ public partial struct MoveParticlesSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         var deltaTime = SystemAPI.Time.DeltaTime;
-        var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 
         new MoveParticlesJob()
         {
             DeltaTime = deltaTime,
-            ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
         }.ScheduleParallel();
     }
 }
@@ -28,7 +26,6 @@ public partial struct MoveParticlesSystem : ISystem
 public partial struct MoveParticlesJob : IJobEntity
 {
     public float DeltaTime;
-    public EntityCommandBuffer.ParallelWriter ECB;
     
     [BurstCompile]
     private void Execute(ParticleAspect particle, [EntityIndexInQuery] int sortKey)

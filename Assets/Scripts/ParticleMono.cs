@@ -17,7 +17,8 @@ public class ParticleBaker : Baker<ParticleMono>
         });
         AddComponent(particleEntity, new ParticleTag
         {
-            Speed = 10f
+            Speed = 5f,
+            TimeToDestroy = 5f
         });
     }
 }
@@ -30,4 +31,5 @@ public struct ParticleRenderer : IComponentData
 public struct ParticleTag : IComponentData
 {
     public float Speed;
+    public float TimeToDestroy;
 }
