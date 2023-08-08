@@ -1,7 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 public readonly partial struct ParticleAspect : IAspect
 {
@@ -14,8 +13,12 @@ public readonly partial struct ParticleAspect : IAspect
     
     public float3 Position => _transform.ValueRO.Position;
 
-    public void Move(float deltaTime)
+    public void MoveForward(float deltaTime)
     {
         _transform.ValueRW.Position += _transform.ValueRO.Forward() * Speed * deltaTime;
+        if (_transform.ValueRO.Position.z >= SpawnParticlesMono.Instance.TunnelLength)
+        {
+            _transform.ValueRW.Position = new float3(_transform.ValueRO.Position.x, _transform.ValueRO.Position.y, 0f);
+        }
     }
 }

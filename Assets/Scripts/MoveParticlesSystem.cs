@@ -8,7 +8,7 @@ public partial struct MoveParticlesSystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<TunnelProperties>();
+        
     }
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
@@ -30,6 +30,6 @@ public partial struct MoveParticlesJob : IJobEntity
     [BurstCompile]
     private void Execute(ParticleAspect particle, [EntityIndexInQuery] int sortKey)
     {
-        particle.Move(DeltaTime);
+        particle.MoveForward(DeltaTime);
     }
 }
