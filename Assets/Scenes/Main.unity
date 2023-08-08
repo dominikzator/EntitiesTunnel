@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18378918, g: 0.22837387, b: 0.29989088, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,14 +210,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.22764556, y: 0.051193107, z: -0.038316835, w: 0.9716422}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.507, y: 5.26, z: -3.277}
 --- !u!114 &705507996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,12 +409,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticlesToSpawn: 5000
   ParticleMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  ParticleMaterial: {fileID: 2100000, guid: 9dd5d8093e0031048a3618194e10f6e2, type: 2}
+  ParticleMaterial: {fileID: 2100000, guid: 8a38b7350df9a9c438e568993a00e5c5, type: 2}
   TunnelRadius: 1
-  TunnelLength: 20
+  TunnelLengthFactor: 20
   DifferentMaterialsCount: 1000
   MinParticleSpeed: 1
-  MaxParticleSpeed: 5
+  MaxParticleSpeed: 3
+  MinParticleRotateSpeed: 1
+  MaxParticleRotateSpeed: 3
+  MinParticleScale: 0.05
+  MaxParticleScale: 0.2
 --- !u!4 &1305787725
 Transform:
   m_ObjectHideFlags: 0

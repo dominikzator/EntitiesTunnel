@@ -15,16 +15,26 @@ public class SpawnParticlesMono : MonoBehaviour
     public Mesh ParticleMesh;
     public Material ParticleMaterial;
     public float TunnelRadius;
-    public float TunnelLength;
+    public float TunnelLengthFactor;
     public int DifferentMaterialsCount;
     public float MinParticleSpeed;
     public float MaxParticleSpeed;
+    public float MinParticleRotateSpeed;
+    public float MaxParticleRotateSpeed;
+    public float MinParticleScale;
+    public float MaxParticleScale;
+
+    [HideInInspector] public float TunnelLength => tunnelLength;
 
     private static float tunnelRadius;
     private static float tunnelLength;
     private static int differentMaterialsCount;
     private static float minParticleSpeed;
     private static float maxParticleSpeed;
+    private static float minParticleRotateSpeed;
+    private static float maxParticleRotateSpeed;
+    private static float minParticleScale;
+    private static float maxParticleScale;
     
     private static Random random;
 
@@ -42,8 +52,9 @@ public class SpawnParticlesMono : MonoBehaviour
             var e = Ecb.Instantiate(index, Prototype);
             
             Ecb.SetComponent(index, e, MaterialMeshInfo.FromRenderMeshArrayIndices(random.NextInt(differentMaterialsCount), 0));
-            Ecb.SetComponent(index, e, new LocalTransform {Position = GetRandomPosition(), Scale = 0.1f, Rotation = quaternion.identity});
-            Ecb.SetComponent(index, e, new ParticleTag {Speed = random.NextFloat(minParticleSpeed, maxParticleSpeed)});
+            Ecb.SetComponent(index, e, new LocalTransform {Position = GetRandomPosition(), Scale = random.NextFloat(minParticleScale, maxParticleScale), Rotation = quaternion.identity});
+            Ecb.SetComponent(index, e, new ParticleTag {Speed = random.NextFloat(minParticleSpeed, maxParticleSpeed), RotateSpeed = random.NextFloat(minParticleRotateSpeed, maxParticleRotateSpeed),
+                RandomRotation = new float3(random.NextFloat(-1f,1f), random.NextFloat(-1f,1f), random.NextFloat(-1f,1f))});
         }
     }
 
@@ -61,10 +72,14 @@ public class SpawnParticlesMono : MonoBehaviour
             Instance = this;
             random = Random.CreateFromIndex((uint)UnityEngine.Random.Range(0, 100));
             tunnelRadius = TunnelRadius;
-            tunnelLength = TunnelLength;
+            tunnelLength = tunnelRadius * TunnelLengthFactor;
             differentMaterialsCount = (ParticlesToSpawn > DifferentMaterialsCount) ? DifferentMaterialsCount : ParticlesToSpawn;
             minParticleSpeed = MinParticleSpeed;
             maxParticleSpeed = MaxParticleSpeed;
+            minParticleRotateSpeed = MinParticleRotateSpeed;
+            maxParticleRotateSpeed = MaxParticleRotateSpeed;
+            minParticleScale = MinParticleScale;
+            maxParticleScale = MaxParticleScale;
         }
         else
         {
@@ -84,7 +99,7 @@ public class SpawnParticlesMono : MonoBehaviour
         for (int i=0;i<colorsCount;i++)
         {
             var mat = new Material(ParticleMaterial);
-            Color col = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), 1f);
+            Color col = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.2f,1.0f));
             mat.SetColor("_Color", col);              // set for LW
             mat.SetColor("_BaseColor", col);          // set for HD
             matList.Add(mat);
