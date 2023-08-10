@@ -47,16 +47,6 @@
 			CBUFFER_START(UnityPerMaterial)
 			float _rainbow;
 			CBUFFER_END
-
-			#if defined(UNITY_DOTS_INSTANCING_ENABLED)
-				UNITY_DOTS_INSTANCING_START(MaterialPropertyMetadata)
-					UNITY_DOTS_INSTANCED_PROP(float4, _Color)
-					UNITY_DOTS_INSTANCED_PROP(float4, _MainTex_ST)
-				UNITY_DOTS_INSTANCING_END(MaterialPropertyMetadata)
-
-				#define _Color UNITY_ACCESS_DOTS_INSTANCED_PROP_WITH_DEFAULT(float4, _Color)
-				#define _MainTex_ST UNITY_ACCESS_DOTS_INSTANCED_PROP_WITH_DEFAULT(float4, _MainTex_ST)
-			#endif
 			
 			float rand(float3 co)
             {
@@ -73,10 +63,6 @@
 				float3 positionWS = TransformObjectToWorld(v.positionOS);
 				output.positionCS = TransformWorldToHClip(positionWS);
 				output.color = float4(rand(v.positionOS.x), rand(v.positionOS.y), _rainbow > 0 ? rand(v.positionOS.z) : 1, 1);
-
-				#if UNITY_ANY_INSTANCING_ENABLED
-				output.instanceID = v.instanceID;
-				#endif
 
 				return output;
 			}

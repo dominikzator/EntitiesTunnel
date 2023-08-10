@@ -27,7 +27,6 @@ public readonly partial struct ParticleAspect : IAspect
 
     public void RandomRotate(float time)
     {
-        //_transform.ValueRW.Rotation = quaternion.Euler(RandomRotation * (float)time * RotationSpeed);
         _transform.ValueRW.Rotation = quaternion.RotateX(RandomRotation.x * time * RotationSpeed);
         _transform.ValueRW.Rotation = quaternion.RotateY(RandomRotation.y * time * RotationSpeed);
         _transform.ValueRW.Rotation = quaternion.RotateZ(RandomRotation.z * time * RotationSpeed);

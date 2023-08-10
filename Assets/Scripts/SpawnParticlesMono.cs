@@ -23,6 +23,8 @@ public class SpawnParticlesMono : MonoBehaviour
     public float MaxParticleRotateSpeed;
     public float MinParticleScale;
     public float MaxParticleScale;
+    public float MinTransparency;
+    public float MaxTransparency;
 
     [HideInInspector] public float TunnelLength => tunnelLength;
 
@@ -99,7 +101,7 @@ public class SpawnParticlesMono : MonoBehaviour
         for (int i=0;i<colorsCount;i++)
         {
             var mat = new Material(ParticleMaterial);
-            Color col = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.2f,1.0f));
+            Color col = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(MinTransparency,MaxTransparency));
             mat.SetColor("_Color", col);              // set for LW
             mat.SetColor("_BaseColor", col);          // set for HD
             matList.Add(mat);

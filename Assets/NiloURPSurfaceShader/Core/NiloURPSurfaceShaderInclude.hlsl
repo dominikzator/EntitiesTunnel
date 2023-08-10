@@ -133,7 +133,10 @@ Varyings VertAllWork(Attributes IN, bool shouldApplyShadowBias = false, bool isE
 {
     UserGeometryOutputData geometryData = BuildUserGeometryOutputData(IN, isExtraCustomPass);
 
-    Varyings OUT;
+    Varyings OUT = (Varyings)0;
+
+    UNITY_SETUP_INSTANCE_ID(IN);
+    UNITY_TRANSFER_INSTANCE_ID(IN, OUT);
 
     // VertexPositionInputs contains position in multiple spaces (world, view, homogeneous clip space)
     // The compiler will strip all unused references.
