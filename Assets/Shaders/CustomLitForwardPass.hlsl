@@ -242,14 +242,14 @@ void LitPassFragment(
     half3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
 
 
-    half rim = 1.0 - saturate(dot (normalize(viewDirWS), input.normalWS));
-    color.rgb = float3(0,1,1) * pow (rim, 5) * 10;
-    color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(_Surface));
-
-    if(color.a <= 0.2)
-    {
-        color.a = rand(viewDirWS) * 5;
-    }
+    //half rim = 1.0 - saturate(dot (normalize(viewDirWS), input.normalWS));
+    //color.rgb = float3(0,1,1) * pow (rim, 5) * 10;
+    //color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(_Surface));
+//
+    //if(color.a <= 0.2)
+    //{
+    //    color.a = rand(viewDirWS) * 5;
+    //}
 
     outColor = color;
 

@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticlesToSpawn: 5000
-  ParticleMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  ParticleMaterial: {fileID: 2100000, guid: bcb5f823f9a01ac418f85db06e114f34, type: 2}
+  ParticleMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  ParticleMaterial: {fileID: 2100000, guid: e76fdfe3eaefdc94dbcbabe604445fd6, type: 2}
   TunnelRadius: 2
   TunnelLengthFactor: 20
   DifferentMaterialsCount: 1000
@@ -419,8 +419,8 @@ MonoBehaviour:
   MaxParticleRotateSpeed: 3
   MinParticleScale: 0.05
   MaxParticleScale: 0.2
-  MinTransparency: 0.2
-  MaxTransparency: 0.2
+  MinTransparency: 0.1
+  MaxTransparency: 1
 --- !u!4 &1305787725
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306413142486574, guid: 7ca1fbabebaaf23408b0d8d47e97c5d7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4993071210865136, guid: 7ca1fbabebaaf23408b0d8d47e97c5d7, type: 3}
       propertyPath: m_RootOrder
@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 23992262624320082, guid: 7ca1fbabebaaf23408b0d8d47e97c5d7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bcb5f823f9a01ac418f85db06e114f34, type: 2}
+      objectReference: {fileID: 2100000, guid: e76fdfe3eaefdc94dbcbabe604445fd6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

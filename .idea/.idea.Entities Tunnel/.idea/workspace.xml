@@ -6,16 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="be7e28f8-cfb8-4fc4-8462-0a2b7feca42d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Entities Tunnel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Entities Tunnel/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New Universal Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Universal Render Pipeline Asset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/Core/NiloURPSurfaceShaderInclude.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/Core/NiloURPSurfaceShaderInclude.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/ExampleSurfaceShaders/NiloURPSurfaceShader_Example.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/ExampleSurfaceShaders/NiloURPSurfaceShader_Example.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/ExampleSurfaceShaders/NiloURPSurfaceShader_Example.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NiloURPSurfaceShader/ExampleSurfaceShaders/NiloURPSurfaceShader_Example.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/ExtrudeSin.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/ExtrudeSin.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/HologramURPEntity.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/HologramURPEntity.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Lit.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/MyCustomMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/MyCustomMaterial.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/URPLitMaterial.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/URPLitMaterial.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ParticleAspect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ParticleAspect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpawnParticlesMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpawnParticlesMono.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/CrystalEntity.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/CrystalEntity.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/CustomLitForwardPass.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/CustomLitForwardPass.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologram.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologram.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ExtrudeSin.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ExtrudeSin.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/HologramURPEntity.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/HologramURPEntity.shader.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
