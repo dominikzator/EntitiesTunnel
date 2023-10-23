@@ -48,9 +48,11 @@ struct Attributes
 CBUFFER_START(UnityPerMaterial)
 float4 _BaseMap_ST;
 half4 _BaseColor;
+half4 _Color;
 half4 _EmissionColor;
 half _Cutoff;
 float _RimPower;
+float _RimThreshold;
 float _DistortionStrength;
 float _enableHologram;
 float _enableDistortion;

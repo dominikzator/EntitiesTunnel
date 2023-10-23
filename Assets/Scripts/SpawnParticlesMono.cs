@@ -12,7 +12,7 @@ using Random = Unity.Mathematics.Random;
 public class SpawnParticlesMono : MonoBehaviour
 {
     public int ParticlesToSpawn;
-    public Mesh ParticleMesh;
+    public List<Mesh> ParticleMeshes;
     public Material ParticleMaterial;
     public float TunnelRadius;
     public float TunnelLengthFactor;
@@ -37,6 +37,7 @@ public class SpawnParticlesMono : MonoBehaviour
     private static float maxParticleRotateSpeed;
     private static float minParticleScale;
     private static float maxParticleScale;
+    private static int particleMeshesCount;
     
     private static Random random;
 
@@ -53,7 +54,7 @@ public class SpawnParticlesMono : MonoBehaviour
         {
             var e = Ecb.Instantiate(index, Prototype);
             
-            Ecb.SetComponent(index, e, MaterialMeshInfo.FromRenderMeshArrayIndices(random.NextInt(differentMaterialsCount), 0));
+            Ecb.SetComponent(index, e, MaterialMeshInfo.FromRenderMeshArrayIndices(random.NextInt(differentMaterialsCount), random.NextInt(particleMeshesCount)));
             Ecb.SetComponent(index, e, new LocalTransform {Position = GetRandomPosition(), Scale = random.NextFloat(minParticleScale, maxParticleScale), Rotation = quaternion.identity});
             Ecb.SetComponent(index, e, new ParticleTag {Speed = random.NextFloat(minParticleSpeed, maxParticleSpeed), RotateSpeed = random.NextFloat(minParticleRotateSpeed, maxParticleRotateSpeed),
                 RandomRotation = new float3(random.NextFloat(-1f,1f), random.NextFloat(-1f,1f), random.NextFloat(-1f,1f))});
@@ -82,6 +83,7 @@ public class SpawnParticlesMono : MonoBehaviour
             maxParticleRotateSpeed = MaxParticleRotateSpeed;
             minParticleScale = MinParticleScale;
             maxParticleScale = MaxParticleScale;
+            particleMeshesCount = ParticleMeshes.Count;
         }
         else
         {
@@ -102,8 +104,9 @@ public class SpawnParticlesMono : MonoBehaviour
         {
             var mat = new Material(ParticleMaterial);
             Color col = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(MinTransparency,MaxTransparency));
+            Color col2 = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(MinTransparency,MaxTransparency));
             mat.SetColor("_Color", col);              // set for LW
-            mat.SetColor("_BaseColor", col);          // set for HD
+            mat.SetColor("_BaseColor", col2);          // set for HD
             matList.Add(mat);
         }
 
@@ -111,7 +114,7 @@ public class SpawnParticlesMono : MonoBehaviour
             shadowCastingMode: ShadowCastingMode.Off,
             receiveShadows: false);
         
-        var renderMeshArray = new RenderMeshArray(matList.ToArray(), new[] { ParticleMesh });
+        var renderMeshArray = new RenderMeshArray(matList.ToArray(), ParticleMeshes.ToArray());
         
         var prototype = entityManager.CreateEntity();
         

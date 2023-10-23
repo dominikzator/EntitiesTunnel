@@ -1,4 +1,4 @@
-Shader "Custom/DistortedHologramURP"
+Shader "Custom/RedHexagram"
 {
     Properties
     {
@@ -7,7 +7,7 @@ Shader "Custom/DistortedHologramURP"
         //_RimColor ("Rim Color", Color) = (0,0.5,0.5,0.0)
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
         _DistortionStrength ("Distortion Strength", Range(0,5)) = 1
-        
+
         [HideInInspector] [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
 
@@ -69,73 +69,86 @@ Shader "Custom/DistortedHologramURP"
             #include "Assets/Shaders/DistortedHologramURPInclude.hlsl"
 
             //#include "Assets/Shaders/CustomLitForwardPass.hlsl"
-            
- // Used in Standard (Physically Based) shader
-Varyings LitPassVertex(Attributes input)
-{
-    Varyings output = (Varyings)0;
 
-    UNITY_SETUP_INSTANCE_ID(input);
-    UNITY_TRANSFER_INSTANCE_ID(input, output);
-    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+            // Used in Standard (Physically Based) shader
+            Varyings LitPassVertex(Attributes input)
+            {
+                Varyings output = (Varyings)0;
 
-    VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_TRANSFER_INSTANCE_ID(input, output);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-    // normalWS and tangentWS already normalize.
-    // this is required to avoid skewing the direction during interpolation
-    // also required for per-vertex lighting and SH evaluation
-    VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
-                
-    output.uv = TRANSFORM_TEX(input.texcoord, _BaseMap);
+                VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
 
-    // already normalized from normal transform to WS.
-    output.normalWS = normalInput.normalWS;
-    output.positionWS = vertexInput.positionWS;
-                
-    output.positionCS = vertexInput.positionCS;
+                // normalWS and tangentWS already normalize.
+                // this is required to avoid skewing the direction during interpolation
+                // also required for per-vertex lighting and SH evaluation
+                VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
 
-    return output;
-}
+                output.uv = TRANSFORM_TEX(input.texcoord, _BaseMap);
 
-float rand(float3 co)
-{
-    return frac(sin( dot(co.xyz ,float3(12.9898,78.233,45.5432) )) * 43758.5453);
-}
+                // already normalized from normal transform to WS.
+                output.normalWS = normalInput.normalWS;
+                output.positionWS = vertexInput.positionWS;
 
-// Used in Standard (Physically Based) shader
-void LitPassFragment(
-    Varyings input
-    , out half4 outColor : SV_Target0
-#ifdef _WRITE_RENDERING_LAYERS
+                output.positionCS = vertexInput.positionCS;
+
+                return output;
+            }
+
+            float3 palette(float t)
+            {
+                float3 a = float3(0.5, 0.5, 0.5);
+                float3 b = float3(0.5, 0.5, 0.5);
+                float3 c = float3(1, 1, 1);
+                float3 d = float3(0.263, 0.416, 0.557);
+
+                return a + b*cos(6.28318*(c*t+d));
+            }
+
+            float sdHexagram( in float2 p, in float r )
+            {
+                const float4 k = float4(-0.5,0.8660254038,0.5773502692,1.7320508076);
+                p = abs(p);
+                p -= 2.0*min(dot(k.xy,p),0.0)*k.xy;
+                p -= 2.0*min(dot(k.yx,p),0.0)*k.yx;
+                p -= float2(clamp(p.x,r*k.z,r*k.w),r);
+                return length(p)*sign(p.y);
+            }
+
+            // Used in Standard (Physically Based) shader
+            void LitPassFragment(
+                Varyings input
+                , out half4 outColor : SV_Target0
+                #ifdef _WRITE_RENDERING_LAYERS
     , out float4 outRenderingLayers : SV_Target1
-#endif
-)
-{
-    half3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+                #endif
+            )
+            {
+                half3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
 
-    SurfaceData surfaceData;
-    InitializeStandardLitSurfaceData(input.uv, surfaceData);
+                SurfaceData surfaceData;
+                InitializeStandardLitSurfaceData(input.uv, surfaceData);
 
-    InputData inputData;
-    InitializeInputData(input, surfaceData.normalTS, inputData);
-    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+                InputData inputData;
+                InitializeInputData(input, surfaceData.normalTS, inputData);
+                SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+                float2 uv = input.uv * 2.0 - float2(1,1) / 1.0;
 
-    half4 color = UniversalFragmentPBR(inputData, surfaceData);
+                float d = sdHexagram(uv, 0.4);
+
+                float3 col = float3(1.0, 0.0, 0.0);
+                // d -= 0.5;
+                d = sin(d * 16.0 + _Time.y * 2) / 16.0;
+                d = 0.02 / d;
+
+                col *= d;
                 
-    half rim = 1.0 - saturate(dot (normalize(viewDirWS), input.normalWS));
-    color.rgb = _enableHologram > 0 ? _BaseColor.rgb * pow (rim, _RimPower) * 10 : 0;
-    color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(true));
-
-    if(_enableDistortion)
-    {
-        color.a = rand(viewDirWS) * _DistortionStrength;
+                outColor = float4(col, 1.0);
+            }
+            ENDHLSL
+        }
     }
-
-    outColor = color;
-}
-            
-ENDHLSL
-}
-}
     FallBack "Hidden/Universal Render Pipeline/FallbackError"
 }

@@ -1,15 +1,13 @@
-Shader "Custom/DistortedHologramURP"
+Shader "Custom/RimURP"
 {
     Properties
     {
-        [Toggle(ENABLE_HOLOGRAM)] _enableHologram("ENABLE_HOLOGRAM", Float) = 0
-        [Toggle(ENABLE_DISTORTION)] _enableDistortion("ENABLE_DISTORTION", Float) = 0
-        //_RimColor ("Rim Color", Color) = (0,0.5,0.5,0.0)
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
-        _DistortionStrength ("Distortion Strength", Range(0,5)) = 1
         
         [HideInInspector] [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
-        [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
+        [MainColor] _BaseColor("Base Color", Color) = (1,1,1,1)
+        _Color("Color", Color) = (1, 1, 1, 1)
+        _RimThreshold("Rim Threshold", Range(0,1.0)) = 0.5
 
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -23,7 +21,6 @@ Shader "Custom/DistortedHologramURP"
 
         // ObsoleteProperties
         [HideInInspector] _MainTex("BaseMap", 2D) = "white" {}
-        [HideInInspector] _Color("Base Color", Color) = (1, 1, 1, 1)
     }
 
     SubShader
@@ -123,13 +120,17 @@ void LitPassFragment(
     half4 color = UniversalFragmentPBR(inputData, surfaceData);
                 
     half rim = 1.0 - saturate(dot (normalize(viewDirWS), input.normalWS));
-    color.rgb = _enableHologram > 0 ? _BaseColor.rgb * pow (rim, _RimPower) * 10 : 0;
-    color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(true));
-
-    if(_enableDistortion)
+    if(rim <= _RimThreshold)
     {
-        color.a = rand(viewDirWS) * _DistortionStrength;
+        color.rgb = _Color * rim;
     }
+    else
+    {
+        color.rgb = _BaseColor.rgb * pow(rim, _RimPower);
+    }
+    //color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(true));
+
+                
 
     outColor = color;
 }

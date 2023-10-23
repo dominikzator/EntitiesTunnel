@@ -6,24 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="be7e28f8-cfb8-4fc4-8462-0a2b7feca42d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Entities Tunnel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Entities Tunnel/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ExtrudeSin.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ExtrudeSin.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/HologramURPEntity.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/HologramURPEntity.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/DistortedHologramMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/DistortedHologramMat.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Lit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Lit.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/MyCustomMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/MyCustomMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/URPLitMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/URPLitMaterial.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/CustomLitForwardPass.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/CustomLitForwardPass.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologram.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologram.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ExtrudeSin.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/ExtrudeSin.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/HologramURPEntity.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/HologramURPEntity.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpawnParticlesMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpawnParticlesMono.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologramURP.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/DistortedHologramURP.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/DistortedHologramURPInclude.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/DistortedHologramURPInclude.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +39,11 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@1.0.11/Unity.Transforms/LocalTransform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/ShaderLibrary/ShaderVariablesFunctions.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/2D/Shadow2D-Shadow-Sprite.shader" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/DepthOnlyPass.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/LitForwardPass.hlsl" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/ShadowCasterPass.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/LitForwardPass.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/LitGBufferPass.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.7/Shaders/ShadowCasterPass.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Projects/HarmonicObjects/Assets/Scripts/RotateAnimation.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -73,7 +65,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;RiderCSharpLiveTemplatesSettingsId&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -140,6 +132,10 @@
       <workItem from="1691539207302" duration="352000" />
       <workItem from="1691572579579" duration="17089000" />
       <workItem from="1691658054388" duration="8392000" />
+      <workItem from="1691751015396" duration="2298000" />
+      <workItem from="1692728083068" duration="64000" />
+      <workItem from="1692915633245" duration="4168000" />
+      <workItem from="1692955215789" duration="4379000" />
     </task>
     <servers />
   </component>
